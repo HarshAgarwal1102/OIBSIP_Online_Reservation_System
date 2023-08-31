@@ -43,24 +43,30 @@ public class OnlineReservation {
     }
     
     private void login(Scanner scanner) {
+    	System.out.println();
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         
         if (users.containsKey(username) && users.get(username).equals(password)) {
-            System.out.println("Login successful.");
+        	System.out.println();
+            System.out.println("Logged in successfully...");
+            System.out.println();
             reservationMenu(scanner, username);
         } else {
-            System.out.println("Invalid username or password.");
+        	System.out.println();
+            System.out.println("Invalid username or password...");
         }
     }
     
     private void register(Scanner scanner) {
+    	System.out.println();
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         
         if (users.containsKey(username)) {
+        	System.out.println();
             System.out.println("Username already exists. Try again.");
             return;
         }
@@ -68,7 +74,8 @@ public class OnlineReservation {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         users.put(username, password);
-        System.out.println("Registration successful. You can now log in.");
+        System.out.println();
+        System.out.println("Registration successful... \nYou can now log in to the system...");
     }
     
     private void reservationMenu(Scanner scanner, String username) {
@@ -89,6 +96,7 @@ public class OnlineReservation {
                     cancelReservation(scanner, username);
                     break;
                 case 3:
+                	System.out.println();
                     System.out.println("Logging out...");
                     return;
                 default:
@@ -101,6 +109,7 @@ public class OnlineReservation {
     }
     
     private void makeReservation(Scanner scanner, String username) {
+    	System.out.println();
         System.out.print("Enter reservation details: ");
         String reservationDetails = scanner.nextLine();
         
@@ -110,18 +119,20 @@ public class OnlineReservation {
         }
         
         reservations.put(username, reservationDetails);
-        System.out.println("Reservation created successfully.");
+        System.out.println("Reservation created successfully...");
     }
     
     private void cancelReservation(Scanner scanner, String username) {
         if (reservations.containsKey(username)) {
+        	System.out.println();
             System.out.println("Your current reservation: " + reservations.get(username));
             System.out.print("Do you want to cancel this reservation? (Y/N): ");
             String confirmation = scanner.nextLine();
             
             if (confirmation.equalsIgnoreCase("Y")) {
                 reservations.remove(username);
-                System.out.println("Reservation canceled successfully.");
+                System.out.println();
+                System.out.println("Reservation canceled successfully...");
             } else {
                 System.out.println("Reservation not canceled.");
             }
